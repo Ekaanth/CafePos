@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+<body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<head th:replace="common/header :: navbar"/>
+ 
+ 
+<div class="container main">
+    <div class="row">
+    
+     <div th:switch="${q}">
+			<p th:case="'add'"><span> Items </span> <a th:href="@{/items/edit?id=}+${id}"><b><span th:text="${key}"></span></b></a><span> added Successfully!</span></p>
+			
+	
+		</div>
+            
+        <div class="col-md-6">
+            <h3>Item Details</h3>
+            <form th:action="@{/items/save}" method="post">
+            			
+                <input type="hidden" name="id" th:value="${items.id}"  th:object="${items}"/>
+                <input type="hidden" name="mode" th:value="add"/>
+                  
+                
+                <div class="form-group">
+                   <label for="itemsname">Items Name<span style="color:red">*</span> </label>
+                   <span class="bg-danger pull-right" th:if="${#fields.hasErrors('itemname')}" th:errors="*{itemname}">error</span> 
+                   <input type="text" class="form-control" th:value="${items.itemname}" name="itemname"
+                           id="itemsname" placeholder="Enter Item Name"  required="required"/>
+               </div>
+             
+            
+               <div class="form-group">
+                 <label for="itemsuom">Unit Of Measurement<span style="color:red">*</span> </label>
+                 <select class="form-control" th:attr="value = ${items.uom}" id="itemsuom" name="uom"  required="required">
+                 <option disabled="disabled" selected="selected" value="">-Select Unit Of Measurement-</option>
+                   <option 
+				    th:each="item : ${ItemsUomlist}" 
+				    th:value="${item}" 
+				    th:text="${#strings.capitalize(#strings.toLowerCase(item))}" 
+     	            th:selected="(${item} == ${selecteduom})"></option>
+                    </select>
+                </div> 
+                
+                <div>
+                 <label for="itemsunitcp">Unit Cost Price<span style="color:blue">(Enter Numbers)</span></label>
+                 <input type="text" class="form-control" th:value="${items.unitcp}" name="unitcp"
+                           id="itemsunitcp" placeholder="Enter unitcp"/>
+                </div>
+                
+                <div>
+                 <label for="itemsunitsp">Unit Selling Price<span style="color:blue">(Enter Numbers)</span></label>
+                 <input type="text" class="form-control" th:value="${items.unitsp}" name="unitsp"
+                           id="itemsunitsp" placeholder="Enter unitsp"/>
+                </div>
+                
+                          
+                  <div class="form-group">
+                    <label for="effdate">Effective Date: <span style="color:red">*</span></label>
+                    <div class="input-append date form_datetime input-group" >
+
+                    
+                        <input class="form-control" type="text"  required="required"
+                               th:value="${effDate}" name="effDate"
+                               id="effDate" />
+                        <span class="input-group-addon"><i class="fa fa-times" aria-hidden="true"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                    </div>
+                </div>
+                 
+                
+                 <div class="form-group">
+                 <label for="itemcat">Item Category</label>
+                 <select class="form-control" th:value="${items.itemcat}" id="itemcat" name="itemcat">
+                 <option disabled="disabled" selected="selected" >-Select Item Category-</option>
+                   <option 
+				    th:each="item : ${ItemsCatlist}" 
+				    th:value="${item}" 
+				    th:text="${#strings.capitalize(#strings.toLowerCase(item))}" 
+     	            th:selected="(${item} == ${selecteditemcat})"></option>
+                    </select>
+                </div>
+                
+                        
+                            
+               <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+				<div>
+                <button class="btn btn-primary" type="submit">Add Items</button>
+                 </div>         
+                       </form>
+            </div>
+           
+        </div>
+    </div>
+    <br/>
+    
+ 
+ 
+<div th:replace="common/header :: body-bottom-scripts"></div>
+
+ 
+</body>
+</html>

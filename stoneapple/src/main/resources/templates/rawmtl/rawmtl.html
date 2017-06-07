@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+<body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<head th:replace="common/header :: navbar"/>
+ 
+ 
+<div class="container main">
+    <div class="row">
+    
+     <div th:switch="${q}">
+			<p th:case="'add'"><span> Raw Mtl </span> <a th:href="@{/rawmtl/edit?id=}+${id}"><b><span th:text="${key}"></span></b></a><span> added Successfully!</span></p>
+			
+	
+		</div>
+            
+        <div class="col-md-6">
+            <h3>Raw Mtl Details</h3>
+            <form th:action="@{/rawmtl/save}" method="post" th:object="${rawmtl}">
+            			
+                <input type="hidden" name="id" th:value="${rawmtl.id}" />
+                <input type="hidden" name="mode" th:value="add"/>
+                  
+                
+                <div class="form-group">
+                   <label for="rawmtlname">Raw Material Name<span style="color:red">*</span> </label>
+                    <input type="text" class="form-control" th:value="${rawmtl.rawmtlname}" name="rawmtlname"
+                           id="rawmtlname" placeholder="Enter Raw material name"  required="required"/>
+                    <span class="bg-danger pull-right" th:if="${#fields.hasErrors('rawmtlname')}" th:errors="*{rawmtlname}">error</span> 
+               </div>
+             
+            
+               <div class="form-group">
+                 <label for="rawmtluom">Unit Of Measurement<span style="color:red">*</span> </label>
+                 <select class="form-control" th:attr="value=${rawmtl.uom}" id="rawmtluom" name="uom"  required="required">
+                 <option disabled="disabled" selected="selected" >-Select Unit Of Measurement-</option>
+                   <option 
+				    th:each="item : ${Uomlist}" 
+				    th:value="${item}" 
+				    th:text="${#strings.capitalize(#strings.toLowerCase(item))}" 
+     	            th:selected="(${item} == ${selecteduom})"></option>
+                    </select>
+                </div> 
+                
+                <div>
+                 <label for="rawmtlunitcp">Unit Cost Price<span style="color:blue">(Enter Numbers)</span></label>
+                 <input type="text" class="form-control" th:value="${rawmtl.unitcp}" name="unitcp"
+                           id="rawmtlunitcp" placeholder="Enter unitcp"/>
+                </div>
+                
+                           
+                  <div class="form-group">
+                    <label for="effdate">Effective Date: <span style="color:red">*</span></label>
+                    <div class="input-append date form_datetime input-group">
+                    
+                        <input class="form-control" type="text" required="required" 
+                               th:value="${effDate}" name="effDate"
+                               id="effDate" />
+                        <span class="input-group-addon"><i class="fa fa-times" aria-hidden="true"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                    </div>
+                </div>
+                
+                 <div class="form-group">
+                 <label for="bulkpurchase">Bulk Purchase</label>
+                 <select class="form-control" th:attr="value=${rawmtl.bulkpurchase}" id="bulkpurchase" name="bulkpurchase">
+                 <option disabled="disabled" selected="selected" >-Select Bulk Purchase-</option>
+                   <option 
+				    th:each="item : ${BulkList}" 
+				    th:value="${item}" 
+				    th:text="${#strings.capitalize(#strings.toLowerCase(item))}" 
+     	            th:selected="(${item} == ${selectedbulklist})"></option>
+                    </select>
+                </div>
+                
+               
+               <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+				<div>
+                <button class="btn btn-primary" type="submit">Add Raw Material</button>
+                 </div>         
+                       </form>
+            </div>
+           
+        </div>
+    </div>
+    <br/>
+    
+ 
+ 
+<div th:replace="common/header :: body-bottom-scripts"></div>
+
+ 
+</body>
+</html>

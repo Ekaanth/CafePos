@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+<body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<head th:replace="common/header :: navbar"/>
+<div class="container main">
+    <div class="row">
+        <div class="col-lg-12">
+            
+        </div>
+        
+    </div>
+    <!-- /.row -->
+    <div class="row">
+		 <h3>List of Users</h3>
+    <div class="table-responsive">
+       <table id="example" class="table table-bordered table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Phone No</th>
+                    <th>Enabled</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-th-each="eachUser : ${userlist}">
+                    <td><a data-th-text="${eachUser.username}" th:href="@{/user/profile/edit?id=}+${eachUser.userId}">...</a></td>
+                    <td data-th-text="${eachUser.email}">...</td>
+                    <td data-th-text="${eachUser.phone}">...</td>
+                    <td data-th-text="${eachUser.enabled}">...</td>
+
+                </tr>
+                </tbody>
+            </table>
+
+    </div>
+</div>
+</div>
+
+<div th:replace="common/header :: body-bottom-scripts"></div>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+</script>
+
+</body>
+</html>

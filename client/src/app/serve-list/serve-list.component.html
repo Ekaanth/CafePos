@@ -1,0 +1,30 @@
+<div class="hh">
+    <div id="textbox">
+        <h1 class="alignleft"><strong> Peacock Cafe</strong></h1>
+        <p class="alignright"><button class="button button3 "><h3><strong>{{getDatetime | date:'dd-MMM-yyyy'}}</strong></h3></button></p>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+
+
+
+<div class="container">
+
+    <div class="container-fluid">
+
+        <div class="col-sm-3" *ngFor="let s of serves"><br>
+            <div class="Cell">
+                <h3 style="font-size: 20px;text-align:center; font-family:Georgia, serif;border: .6px solid green ;	">
+                    Bill No:{{s[0]}}</h3>
+                <h3> Item:{{s[2]}}</h3>
+                <h3> Quantity:{{s[3]}}</h3>
+                <button class="button3 button3" (click)="saveData()"><h4>Completed</h4></button>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">

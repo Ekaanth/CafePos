@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+<body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<head th:replace="common/header :: navbar"/>
+<div class="container main">
+    <div class="row">
+      <h3>List of Enabled and Disabled Users</h3>
+        <div class="table-responsive">
+            <table id="example" class="table table-bordered table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>Enabled Users</th>
+                  
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-th-each="eachEnable: ${userEnable}"> 
+                <td data-th-text="${eachEnable.username}"> </td>
+   
+                </tr>
+                </tbody>
+                
+                
+                   <thead>
+                <tr>
+                    <th>Disabled Users</th>
+                
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-th-each="eachDisable: ${userDisable}"> 
+                <td data-th-text="${eachDisable.username}"> </td>
+   
+               </tr> 
+                </tbody>
+                
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="common/header :: body-bottom-scripts"/>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+</script>
+</body>
+</html>

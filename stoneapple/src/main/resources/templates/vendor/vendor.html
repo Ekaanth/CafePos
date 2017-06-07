@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"/>
+<body roleId="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<head th:replace="common/header :: navbar"/>
+ 
+ 
+<div class="container main">
+    <div class="row">
+    
+     <div th:switch="${q}">
+			<p th:case="'add'"><span> Vendor </span> <a th:href="@{/vendor/edit?id=}+${id}"><b><span th:text="${key}"></span></b></a><span> added Successfully!</span></p>
+			
+	
+		</div>
+            
+        <div class="col-md-6">
+            <h3>Vendor Details</h3>
+            <form th:action="@{/vendor/save}" method="post" th:object="${vendor}">
+            			
+                <input type="hidden" name="id" th:value="${vendor.id}" />
+                 <input type="hidden" name="mode" th:value="add"/>
+                  
+                
+                <div class="form-group">
+                   <label for="vendorname">Vendor Name<span style="color:red">*</span> </label>
+                    <input type="text" class="form-control" th:value="${vendor.vendorname}" name="vendorname"
+                           id="vendorname" placeholder="Enter Vendor Name"  required="required"/>
+                    <p th:if="${#fields.hasErrors('vendorname')}" class="label label-danger" th:errors="*{vendorname}">Vendor Name should be minimum 3 characters and 30 characters</p>
+                  
+                   </div>
+             
+                 <div class="form-group">
+                    <label for="contactno1">Contact Number 1 <span style="color:red">*</span> </label>
+                 	<span class="bg-danger pull-right" th:if="${contactno1}">Phone number must be in form XXX-XXX-XXXX</span>
+                    <input type="text" class="form-control" th:value="${vendor.contactno1}" name="contactno1"
+                           id="contactno1" placeholder="XXX-XXX-XXXX" required="required"/>
+                </div>
+                
+                 <div>
+                  <label for="contactno2">Contact Number 2</label>
+                  	<span class="bg-danger pull-right" th:if="${contactno2}">Phone number must be in form XXX-XXX-XXXX</span>
+                   	<input type="text" class="form-control" th:value="${vendor.contactno2}" name="contactno2"
+                           id="contactno2" placeholder="XXX-XXX-XXXX"/>
+                </div>
+                
+                 <div class="form-group">
+                    <label for="address1"> Address 1 <span style="color:red">*</span></label>
+                    <textarea class="form-control" th:value="${vendor.address1}" name="address1" style="width:100%;height: 100px;"
+                           id="address1" placeholder="Enter Address here" th:text="${vendor.address1}"  required="required"></textarea>
+                </div>
+                
+                 <div class="form-group">
+                    <label for="address2"> Address 2 </label>
+                    <textarea class="form-control" th:value="${vendor.address2}" name="address2" style="width:100%;height: 100px;"
+                           id="address2" placeholder="Enter an other address here" th:text="${vendor.address2}"></textarea>
+                </div>
+                
+                 <div class="form-group">
+                    <label for="bankdetails">Bank Details</label>
+                    <textarea class="form-control" th:value="${vendor.bankdetails}" name="bankdetails" style="width:100%;height: 100px;"
+                           id="bankdetails" placeholder="Enter bank details here" th:text="${vendor.bankdetails}"></textarea>
+                </div>
+                
+                        
+                            
+               <input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>
+				<div>
+                <button class="btn btn-primary" type="submit">Add Vendor</button>
+                 </div>         
+                       </form>
+            </div>
+           
+        </div>
+    </div>
+    <br/>
+    
+ 
+ 
+<div th:replace="common/header :: body-bottom-scripts"></div>
+
+ 
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
+<head th:fragment="common-header">
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Squapl Magazine</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Website Font style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.css" />
+    
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css' />
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css' />
+
+    <!--bootstrap date-time picker-->
+    <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+    <!--data table-->
+    <link href="/css/jquery.dataTable.min.css" rel="stylesheet" />
+    <link href="/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <!--<link href="css/scrolling-nav.css" rel="stylesheet" />-->
+    <link href="/css/main.css" rel="stylesheet" />
+    
+    <style>
+
+#preview {
+	display:none;
+	min-height:247px;
+	background-color:#FFC;
+	padding:10px;
+	font-size:12px;
+	color:#999;
+	border:1px solid #FF9;
+}
+#title {
+	margin-top:10px;
+	padding:5px;
+	font-size:13px;
+	color:#000;
+	border:1px solid #CCC;
+	font-family:Verdana, Geneva, sans-serif;
+}
+#prevcampignname {
+	margin-top:10px;
+	padding:5px;
+	font-size:13px;
+	color:#000;
+	border:1px solid #CCC;
+	font-family:Verdana, Geneva, sans-serif;
+}
+#photo {
+	margin-bottom:10px;
+}
+#image {
+	margin-top:5px;
+}
+#Displaytitle {
+	font-size:14px;
+	color:#333;
+	margin-top:5px;
+}
+#prevcampignname {
+	font-size:14px;
+	color:#333;
+	margin-top:5px;
+}
+</style>
+    
+    
+</head>
+<body>
+<!-- Navigation -->
+<div th:fragment="navbar">
+    
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+      <img src="/images/logo-mini.png" alt="Squapl Logo" />
+      </a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/userFront">Home</a></li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Creatives
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+           <li><a th:href="@{/api/article}">Add Article</a></li>
+           <li><a th:href="@{/api/article/show}">List Articles</a></li>
+           <li role="separator" class="divider"></li>            
+            <li><a th:href="@{/api/picture}">Add Picture</a></li>
+			<li><a th:href="@{/api/picture/show}">List Picture</a></li>
+          
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Set Up
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a th:href="@{/api/category}">Add Category</a></li>
+            <li><a th:href="@{/api/category/show}">List Category</a></li>
+	        <li role="separator" class="divider"></li>            
+            <li><a th:href="@{/api/campaign}">Add Campaign</a></li>
+			<li><a th:href="@{/api/campaign/show}">List Campaign</a></li>
+			<li role="separator" class="divider"></li>            
+            <li><a th:href="@{/api/client}">Add Client</a></li>
+			<li><a th:href="@{/api/client/show}">List Client</a></li>
+			
+          
+        </ul>
+      </li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+    
+        <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <span sec:authorize="isAuthenticated()">
+                <span sec:authorize="hasRole('ROLE_ADMIN')">Admin</span>
+                <span sec:authentication="name">User</span>
+                </span>
+
+            <span class="caret"></span></a>
+            
+            <ul class="dropdown-menu" sec:authorize="hasRole('ROLE_ADMIN')">
+                <li><a th:href="@{/user/profile}">Profile</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a th:href="@{/pending/article}">Pending Article</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a th:href="@{/pending/campaign}">Pending Campaign</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+            <ul class="dropdown-menu" sec:authorize="hasRole('ROLE_ADMIN')">
+                <li><a th:href="@{/user/profile}">Profile</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a th:href="@{/pending/article}">My Pending Article</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a th:href="@{/pending/campaign}">My Pending Campaign</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+            
+            
+            
+        </li>
+    </ul>
+    
+  </div>
+</nav>
+    
+</div>
+
+<div th:fragment="body-bottom-scripts">
+    <!-- jQuery -->
+    <script src="/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+
+    <script src="/js/jquery.easing.min.js"></script>
+
+    <!--bootstrap date-time picker-->
+    <script src="/js/bootstrap-datetimepicker.min.js"></script>
+
+    <!--bootbox-->
+    <script src="/js/bootbox.min.js"></script>
+
+    <!--data table-->
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.bootstrap.min.js"></script>
+
+    <!--main js-->
+    <script src="/js/main.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
+    
+    
+    <script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1,
+        startDate: new Date()
+    });
+	$('.form_date').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	$('.form_time').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 1,
+		minView: 0,
+		maxView: 1,
+		forceParse: 0
+    });
+</script>
+    
+    
+</div>
+
+</body>
+</html>
+<!-- http://www.malot.fr/bootstrap-datetimepicker/ -->

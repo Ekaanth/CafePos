@@ -1,0 +1,63 @@
+<div class="Container" style="background-color: #f4df42;">
+    <div id="Row">
+        <h1 class="text-center"><strong> Peacock Cafe</strong></h1>
+        <h3 class="text-center"><strong> Sales History</strong></h3>
+        <p class="text-right"><button class="button button3"><h3><strong>{{getDatetime | date:'dd-MMM-yyyy'}}</strong></h3></button></p>
+    </div>
+</div>
+
+
+<div calss="container" style="background-color: #f4df42;">
+    <div>
+        <form ng-submit="onSubmit()">
+            <table class="table">
+                <tr>
+                    <td>Status</td>
+                    <td>Date From</td>
+                    <td>Date To</td>
+                    <td>Outlet</td>
+                    <td>User</td>
+                    <td>Receipt Id</td>
+                    <td></td>
+                </tr>
+                <tr>
+
+                    <td><select ng-model="sale.option"> 
+                      <option value="">--Select the option--</option>
+                      <option *ngFor="let status of stat" value="{{status.name}}">{{status.name}}</option>
+                                     </select></td>
+                    <td><input type="Date" class="glyphicon glyphicon-calendar" ng-model="sale.fromdate"></td>
+                    <td><input type="Date" class="glyphicon glyphicon-calendar" ng-model="sale.todate"></td>
+                    <td><input type="Text" class="form-control" ng-model="sale.outlet"></td>
+                    <td><input type="Text" class="form-control" ng-model="sale.user"></td>
+                    <td><input type="Text" class="form-control" ng-model="sale.receiptid"></td>
+                    <td><button class="btn btn-primary">Submit</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="container-fluid">
+        <table class="table table-hover">
+            <tr>
+                <td>Id</td>
+                <td>Order Id</td>
+                <td>Date</td>
+                <td>Total</td>
+                <td>BillStatus</td>
+            </tr>
+            <tr *ngFor="let item of items">
+                <td>{{item.id}}</td>
+                <td>{{item.orderid}}</td>
+                <td>{{item.datetime}}</td>
+                <td>{{item.total}}</td>
+                <td>{{item.billstatus}}</td>
+                <td><button calss="btn-primary" (click)="onButtonClick(item.orderid)">cancel/remove</button></td>
+                {{itemid}}
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
