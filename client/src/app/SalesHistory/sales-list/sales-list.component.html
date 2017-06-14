@@ -37,24 +37,40 @@
         </form>
     </div>
     <div class="container-fluid">
-        <table class="table table-hover">
-            <tr>
-                <td>Id</td>
-                <td>Order Id</td>
-                <td>Date</td>
-                <td>Total</td>
-                <td>BillStatus</td>
-            </tr>
-            <tr *ngFor="let item of items">
-                <td>{{item.id}}</td>
-                <td>{{item.orderid}}</td>
-                <td>{{item.datetime}}</td>
-                <td>{{item.total}}</td>
-                <td>{{item.billstatus}}</td>
-                <td><button calss="btn-primary" (click)="onButtonClick(item.orderid)">cancel/remove</button></td>
-                {{itemid}}
-            </tr>
-        </table>
+        <div class="col-sm-9">
+            <table class="table table-hover">
+                <tr>
+                    <td>Id</td>
+                    <td>Order Id</td>
+                    <td>Date</td>
+                    <td>Total</td>
+                    <td>BillStatus</td>
+                    <td></td>
+                </tr>
+                <tr *ngFor="let item of items">
+                    <td>{{item.id}}</td>
+                    <td>{{item.orderid}}</td>
+                    <td>{{item.datetime}}</td>
+                    <td>{{item.total}}</td>
+                    <td>{{item.billstatus}}</td>
+                    <td><button calss="btn-primary" (click)="onCancelButtonClick(item.orderid)">cancel/remove</button></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-3">
+            <table class="table table-hover">
+                <tr>
+                    <td>Item Name</td>
+                    <td>Quantity</td>
+                    <td></td>
+                </tr>
+                <tr *ngFor="let id of itemid">
+                    <td>{{id[2]}}</td>
+                    <td>{{id[3]}}</td>
+                    <td><button class="glyphicon glyphicon-remove" (click)="onCrossButtonClicked(id[0],id[1],id)"></button></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
 

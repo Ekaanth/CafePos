@@ -1,0 +1,50 @@
+<div class="Container" style="background-color: #f4df42;">
+    <div id="Row">
+        <h1 class="text-center"><strong> Peacock Cafe</strong></h1>
+        <h3 class="text-center"><strong> Sales History</strong></h3>
+        <p class="text-right"><button class="button button3"><h3><strong>{{getDatetime | date:'dd-MMM-yyyy'}}</strong></h3></button></p>
+    </div>
+</div>
+<div class="container">
+    <div class="Row">
+        <div class="col-sm-6" style="background-color:lavender;">
+            <div class="container-fluid">
+                <h3>Drinks</h3>
+                <button type="button" class="btn btn-primary btn-lg" (click)="onClickedTea()">Tea</button>
+                <button type="button" class="btn btn-primary btn-lg" (click)="onClickedCoffee()">Coffee</button>
+                <h3>Snacks</h3>
+                <button type="button" class="btn btn-primary btn-lg">Samosa</button>
+                <button type="button" class="btn btn-primary btn-lg">Bajji</button><br><br>
+            </div>
+        </div>
+        <div class="col-sm-6" style="background-color:lavenderblush;">
+            <h1>Bill Total </h1>
+            <div>
+                <table calss="table">
+                    <form (ngSubmit)="onSubmit(product,totalcost)">
+                        <tr>
+                            <th>name</th>
+                            <th></th>
+                            <th>Quantity</th>
+                            <th></th>
+                            <th>cost</th>
+                            <th></th>
+                        </tr>
+                        <tr *ngFor="let prod of product" style="margin-bottom: 10px;" class="text-center">
+                            <td>{{prod.name}}</td>
+                            <button class="btn btn-primary" (click)="incrementProduct(prod)">+</button>
+                            <td>{{prod.qty}}</td>
+                            <button class="btn btn-primary" (click)="decrementProduct(prod)">-</button>
+                            <td>{{prod.cost}}</td>
+
+                            <td><button (click)="removeProduct(prod)">Delete</button></td>
+                        </tr>
+                        <div calss="text-center"><button type="submit">submit</button></div>
+                        Cost: <span><h1>{{totalCost}}</h1></span>
+                    </form>
+                </table>
+            </div>
+            {{product | json}}
+        </div>
+    </div>
+</div>

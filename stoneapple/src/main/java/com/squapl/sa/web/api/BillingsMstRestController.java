@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,13 +67,28 @@ public ResponseEntity<Collection<Billingmst>> listbyStatus()
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE )
 @CrossOrigin(origins= "http://localhost:4200")
-public ResponseEntity<Collection<Billingdtl>> findbyid(@PathVariable("id") String id)
+public ResponseEntity<List> findbyid(@PathVariable("id") String id)
 {
 	Integer i = Integer.parseInt(id);
-	Collection<Billingdtl> billings = billingDltService.findByOrderid(i);
+	List itemDetailsById = billingDltService.findItemDetails(i);
     
-       return new ResponseEntity<Collection<Billingdtl>>(billings, HttpStatus.OK);
+       return new ResponseEntity<List>(itemDetailsById, HttpStatus.OK);
 }
+
+@RequestMapping(
+        value = ("/delete/{orderid}/{itemid}"),
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE )
+@CrossOrigin(origins= "http://localhost:4200")
+public ResponseEntity<List> deletebyItemId(@PathVariable("orderid") String orderid,@PathVariable("itemid") String itemid)
+{
+	Integer oid = Integer.parseInt(orderid);
+	Integer iid = Integer.parseInt(itemid);
+	List itemDetailsById = billingDltService.deleteItembyId(oid,iid);
+    
+       return new ResponseEntity<List>(itemDetailsById, HttpStatus.OK);
+}
+
 
 
 
@@ -103,4 +119,16 @@ public ResponseEntity servelist()
 
 }
 
+@RequestMapping(
+        value = ("/addbill/{product}"),
+        method = RequestMethod.POST,
+        consumes=MediaType.APPLICATION_JSON_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE )
+@CrossOrigin(origins= "http://localhost:4200/billing")
+public ResponseEntity<List> addbill(@RequestParam("product") String body)
+{
+System.out.println(body);
+return null;
+
+}
 }

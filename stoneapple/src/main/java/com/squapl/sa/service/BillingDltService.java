@@ -11,8 +11,12 @@ public interface BillingDltService {
 
 	List serveitems();
 
-	List findByOrderId(Object object);
-
 	Collection<Billingdtl> findByOrderid(Integer i);
+
+	List findItemDetails(Integer i);
+
+	List deleteItembyId(Integer oid, Integer iid);
+
+	List findByOrderId(Object next);
 
 }

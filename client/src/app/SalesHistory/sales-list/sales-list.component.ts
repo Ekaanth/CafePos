@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input } from '@angular/core';
 import { SaleListService } from '../salesservice/sale-list.service'
 import { SaleItemIdService } from '../salesservice/sale-itemid.service'
+import { SaleItemdeleteService } from '../salesservice/sale-item-delete.service'
 @Component({
   selector: 'app-sales-list',
   templateUrl: './sales-list.component.html',
   styleUrls: ['./sales-list.component.css'],
-  providers:[SaleListService,SaleItemIdService]
+  providers:[SaleListService,SaleItemIdService,SaleItemdeleteService]
 })
 export class SalesListComponent implements OnInit {
 
 getDatetime = new Date();
 
-constructor(private salelistserveService: SaleListService, private saleItemIdService : SaleItemIdService) { 
+constructor(private salelistserveService: SaleListService, 
+            private saleItemIdService : SaleItemIdService,
+            private saleItemdeleteService : SaleItemdeleteService) { 
 
   }
 
@@ -35,7 +38,7 @@ stat = [{name:"Completed"},
     );
   }
 
-onButtonClick(orderid){
+onCancelButtonClick(orderid){
   this.saleItemIdService.getAll(orderid).subscribe(
     data => {
       this.itemid = data;
@@ -44,4 +47,16 @@ onButtonClick(orderid){
   );
 }
 
-  }
+
+onCrossButtonClicked(orderid,idofitem,id){
+   var index = this.itemid.indexOf(id);
+  this.itemid.splice(index, 1);
+  this.saleItemdeleteService.getAll(orderid,idofitem).subscribe(data => {
+      this.itemid = data;
+    },
+    error => console.error(error)
+  );
+}
+
+
+}

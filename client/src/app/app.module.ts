@@ -9,12 +9,14 @@ import { routes } from './app.router';
 import { AppComponent } from './app.component';
 import { ServeListComponent } from './serve-list/serve-list.component';
 import { SalesListComponent } from './SalesHistory/sales-list/sales-list.component';
+import { BillingpageComponent } from './billpage/billingpage/billingpage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ServeListComponent,
-    SalesListComponent
+    SalesListComponent,
+    BillingpageComponent
   ],
   imports: [
     BrowserModule,

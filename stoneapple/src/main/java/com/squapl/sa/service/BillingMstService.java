@@ -14,8 +14,6 @@ public interface BillingMstService {
 
 	Collection<Billingmst> findByBillStatus(BillStatus status);
 
-	
-
 	public Collection<Billingmst> findByOrderid(Integer id);
 
 }
