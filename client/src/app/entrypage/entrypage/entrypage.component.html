@@ -5,21 +5,21 @@
             <h3>Open Register</h3>
             <p class="text-right"><button class="button3"><h3><strong>{{getDate | date:'dd-MMM-yyyy'}}</strong></h3></button></p>
         </div>
-        <div class="borders" style="border: 5px solid darkgreen; padding:30px;">
+        <div class="borders" style="border: 5px solid green; padding:30px;">
             <h2>Register Closed</h2>
             <h2>Set an opening float to open Register and make sale</h2>
         </div>
         <br><br>
         <div class="container">
             <div class="text-center">
-                <div class="border" style="border: 5px solid darkgreen; padding:30px;">
+                <div class="border" style="border: 5px solid green; padding:30px;">
                     <table class="table">
                         <tr>
                             <td>
                                 <h3> Opening float</h3>
                             </td>
                             <td>
-                                <input type="textarea" />
+                                <input type="number" class="form" placeholder="Enter the Basic Money" />
                             </td>
                         </tr>
                         <tr>
@@ -27,7 +27,7 @@
                                 <h3> Notes</h3>
                             </td>
                             <td>
-                                <textarea rows="4" cols="50"></textarea>
+                                <textarea rows="4" cols="50" class="form" placeholder="Information"></textarea>
                             </td>
                         </tr>
                     </table>
