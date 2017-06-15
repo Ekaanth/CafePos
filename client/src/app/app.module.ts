@@ -10,13 +10,15 @@ import { AppComponent } from './app.component';
 import { ServeListComponent } from './serve-list/serve-list.component';
 import { SalesListComponent } from './SalesHistory/sales-list/sales-list.component';
 import { BillingpageComponent } from './billpage/billingpage/billingpage.component';
+import { EntrypageComponent } from './entrypage/entrypage/entrypage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ServeListComponent,
     SalesListComponent,
-    BillingpageComponent
+    BillingpageComponent,
+    EntrypageComponent
   ],
   imports: [
     BrowserModule,
