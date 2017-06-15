@@ -11,5 +11,5 @@ export class EntrypageComponent implements OnInit {
 
   ngOnInit() {
   }
-
+getDate = new Date();
 }

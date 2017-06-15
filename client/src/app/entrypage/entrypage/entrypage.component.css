@@ -1,0 +1,70 @@
+.mycolor2 {
+    color: black;
+}
+
+.container {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+    height: 40%;
+}
+
+.small2 {
+    margin: auto;
+    width: 30%;
+    border: 3px solid #73AD21;
+    padding: 10px;
+    background-color: #DCE23D;
+}
+
+.button3 {
+    border-radius: 8px;
+    background-color: #4CAF50;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+    font-size: 16px;
+    margin: 6px 4px;
+    cursor: pointer;
+    /* Green */
+}
+
+.Cell {
+    display: table-cell;
+    border: solid;
+    border-width: thin;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.hh {
+    margin: auto;
+    width: 100%;
+    border: 1px solid #73AD21;
+    padding: 5px;
+    background-color: #9BC181;
+}
+
+.alignleft {
+    float: left;
+}
+
+.alignright {
+    float: right;
+}
+
+.verticalLine {
+    border-left: thick solid #73AD21;
+    margin: 20px;
+    padding: 80px;
+    height: 100%;
+}
+
+@media only screen and (max-width: 10px) {
+    body {
+        background-color: lightblue;
+    }
+}
